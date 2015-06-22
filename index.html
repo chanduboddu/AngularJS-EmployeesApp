@@ -12,7 +12,7 @@
 			<input type="text" ng-model="test">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-1">
-					<table class="table table-bordered">
+					<table id="employee-list" class="table table-bordered">
 						<thead>
 							<th>Sr #</th>
 							<th>Name</th>
@@ -23,7 +23,7 @@
 							<tr ng-repeat="u in employees track by $index">
 								<td>{{$index+1}}</td>
 								<td>{{u.name}}</td>
-								<td>{{u.age}}</td>
+								<td ng-class="{highlight: u.ageHighlighted}">{{u.age}}</td>
 								<td><button class="btn btn-info" ng-click="setSelectedItem(u)">View</button></td>
 							</tr>	
 						</tbody>
@@ -33,7 +33,7 @@
 				
 			</div>
 			
-			<emp-detail selected-emp="selectedItem"></emp-detail>
+			<emp-detail selected-emp="selectedItem" on-age-click="onTellAge(age)"></emp-detail>
 
 
 		</div>				
