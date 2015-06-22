@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+	<head>
+		<meta charset="UTF-8">
+		<title>AngularJS - June Batch</title>
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="styles/site.css">
+	</head>
+	<body>
+		<div class="container" ng-controller="EmployeeMainCtrl">
+			{{test}}
+			<input type="text" ng-model="test">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-1">
+					<table class="table table-bordered">
+						<thead>
+							<th>Sr #</th>
+							<th>Name</th>
+							<th>Age</th>
+							<th>View Details</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="u in employees track by $index">
+								<td>{{$index+1}}</td>
+								<td>{{u.name}}</td>
+								<td>{{u.age}}</td>
+								<td><button class="btn btn-info" ng-click="setSelectedItem(u)">View</button></td>
+							</tr>	
+						</tbody>
+						
+					</table>		
+				</div>
+				
+			</div>
+			
+			<emp-detail selected-emp="selectedItem"></emp-detail>
+
+
+		</div>				
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="app/employees/employees.js"></script>
+		<script src="app/app.js"></script>
+		<script src="app/employees/controllers/EmployeeMainCtrl.js"></script>
+		<script src="app/employees/directives/empDetail.js"></script>
+	</body>
+</html>
