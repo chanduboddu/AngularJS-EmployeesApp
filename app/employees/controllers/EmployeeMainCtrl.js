@@ -1,6 +1,6 @@
 angular.module('myapp.employees')
-	.controller('EmployeeMainCtrl', ['$scope', 
-		function ($scope) {
+	.controller('EmployeeMainCtrl', ['$scope', '$rootScope' ,
+		function ($scope, $rootScope) {
 			$scope.test = "hello";
 			$scope.employees = [
 			{
@@ -11,6 +11,12 @@ angular.module('myapp.employees')
 				name: 'user2',
 				age: 20
 			}];
+
+			$scope.setColor = function(color){
+				if(color){
+					$rootScope.$broadcast('colorChange', color);
+				}
+			};
 
 			$scope.selectedItem;
 

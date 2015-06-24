@@ -1,8 +1,12 @@
-<div class="row" ng-show="selectedEmp">
+<div class="row" ng-show="selectedEmp" ng-style="originalStyle">
 	<div class="col-md-12">
 		<h3>User Details</h3>
 		Name: {{selectedEmp.name}}
 		Age: {{selectedEmp.age}}
 		<button ng-click="tellAge()">Tell Age</button>	
+		<br/>
+		<emp-action></emp-action>
+		<br/>
+		<emp-greeting></emp-greeting>	
 	</div>				
 </div>
