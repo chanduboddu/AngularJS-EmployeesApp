@@ -1,16 +1,28 @@
 angular.module('myapp.employees')
-	.controller('EmployeeMainCtrl', ['$scope', '$rootScope' ,
-		function ($scope, $rootScope) {
+	.controller('EmployeeMainCtrl', ['$scope', '$rootScope', 'EmployeeService', 'EmployeeList',
+		function ($scope, $rootScope, EmployeeService, EmployeeList) {
 			$scope.test = "hello";
-			$scope.employees = [
-			{
-				name: 'user1',
-				age: 10
-			},
-			{
-				name: 'user2',
-				age: 20
-			}];
+			//EmployeeService.setName('user1');
+			$scope.employees = [];
+			var promise = EmployeeList.getEmployees();
+			
+			promise.then(function(result){
+			 	$scope.employees = result.data;
+			 }, function(err){
+			 	console.log(err);
+			 });
+
+
+			promise.then(function(){
+				console.log('called 2nd time');
+			});
+
+			promise.then(function(){
+				console.log('called 3rd time');
+			});
+
+
+			console.log('within controller');
 
 			$scope.setColor = function(color){
 				if(color){

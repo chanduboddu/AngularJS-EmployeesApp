@@ -8,8 +8,11 @@
 	</head>
 	<body>
 		<div class="container" ng-controller="EmployeeMainCtrl">
-			{{test}}
+			{{test | uppercase}}
+
 			<input type="text" ng-model="test">
+			<br/>
+			{{12 | currency:"INR"}}
 			<div class="row">
 				<div class="col-md-12">
 					<input type="text" ng-model="color">
@@ -17,6 +20,8 @@
 				</div>
 			</div>
 			<div class="row">
+				{{employees | json}}
+				{{"abcd" | empFilter:'Hello'}}
 				<div class="col-md-8 col-md-offset-1">
 					<table id="employee-list" class="table table-bordered">
 						<thead>
@@ -28,7 +33,7 @@
 						<tbody>
 							<tr ng-repeat="u in employees track by $index">
 								<td>{{$index+1}}</td>
-								<td>{{u.name}}</td>
+								<td>{{u.name | empFilter:'Hi'}}</td>
 								<td ng-class="{highlight: u.ageHighlighted}">{{u.age}}</td>
 								<td><button class="btn btn-info" ng-click="setSelectedItem(u)">View</button></td>
 							</tr>	
@@ -50,5 +55,8 @@
 		<script src="app/employees/directives/empDetail.js"></script>
 		<script src="app/employees/directives/empAction.js"></script>
 		<script src="app/employees/directives/empGreeting.js"></script>
+		<script src="app/employees/filters/empFilter.js"></script>
+		<script src="app/employees/services/EmployeeService.js"></script>
+		<script src="app/employees/services/EmployeeList.js"></script>
 	</body>
 </html>

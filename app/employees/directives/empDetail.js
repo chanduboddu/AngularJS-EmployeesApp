@@ -4,7 +4,8 @@ angular.module('myapp.employees')
 			alert(msg + " " + $scope.selectedEmp.name);
 		};
 	}])
-	.directive('empDetail',[function(){
+	.directive('empDetail',[  
+		function(){
 
 		return {
 			restrict: 'EA',
