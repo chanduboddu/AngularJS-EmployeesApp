@@ -7,7 +7,7 @@ angular.module('myapp.employees')
 			var promise = EmployeeList.getEmployees();
 			
 			promise.then(function(result){
-			 	$scope.employees = result.data;
+			 	$scope.employees = result;
 			 }, function(err){
 			 	console.log(err);
 			 });
