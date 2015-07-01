@@ -1,0 +1,47 @@
+<div class="container">
+	{{test | uppercase}}
+	
+	<a class="btn btn-success" ui-sref="addEmployee">Add Employee</a>
+	<br/>
+	<input type="text" ng-model="test">
+	<br/>
+	{{12 | currency:"INR"}}
+	<div class="row">
+		<div class="col-md-12">
+			<input type="text" ng-model="color">
+			<button class="btn btn-primary" ng-click="setColor(color)">Set Color</button>
+		</div>
+	</div>
+	<div class="row">
+		{{employees | json}}
+		{{"abcd" | empFilter:'Hello'}}
+		<div class="col-md-8 col-md-offset-1">
+			<table id="employee-list" class="table table-bordered">
+				<thead>
+					<th>Sr #</th>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Level</th>
+					<th>View Details</th>
+					<th>Edit</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="u in employees track by $index">
+						<td>{{$index+1}}</td>
+						<td>{{u.name | empFilter:'Hi'}}</td>
+						<td ng-class="{highlight: u.ageHighlighted}">{{u.age}}</td>
+						<td>{{u.level}}</td>
+						<td><button class="btn btn-info" ng-click="setSelectedItem(u)">View</button></td>
+						<td><a ui-sref="editEmployee({empId: u.id})">Edit</a></td>
+					</tr>	
+				</tbody>
+				
+			</table>		
+		</div>
+		
+	</div>
+	
+	<emp-detail selected-emp="selectedItem" on-age-click="onTellAge(age)"></emp-detail>
+
+
+</div>

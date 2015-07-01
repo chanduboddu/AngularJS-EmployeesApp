@@ -3,6 +3,15 @@ angular.module('myapp.employees')
 		function($http, $q){
 
 		var name="";
+		var employees = [];
+		function _getEmployeeById(id){
+			for(var i=0; i<employees.length;i++){
+				var employee = employees[i];
+				if(employee.id==id){
+					return employee;
+				}
+			}
+		}
 
 		function _getEmployees(){
 			var defer = $q.defer();
@@ -12,6 +21,7 @@ angular.module('myapp.employees')
 					var record = records[i];
 					record.level = record.age>10? "Senior": "Junior";
 				}
+				employees = records;
 				defer.resolve(records);
 			}, function(err){
 				defer.reject(err);
@@ -20,7 +30,8 @@ angular.module('myapp.employees')
 		}
 
 		return {
-			getEmployees: _getEmployees
+			getEmployees: _getEmployees,
+			getEmployeeById: _getEmployeeById
 		};
 
 	}]);
